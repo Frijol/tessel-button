@@ -3,9 +3,15 @@ tessel-button
 
 A button on Tessel's GPIO bank.
 
+* [Quick start](https://github.com/Frijol/tessel-button#quick-start-i-just-want-a-button)
+* [Theory of buttons](https://github.com/Frijol/tessel-button#why-add-a-button-over-the-gpio)
+* [Multiple buttons](https://github.com/Frijol/tessel-button#multiple-buttons)
+
 ## Quick start: I just want a button.
 
-Your button should have two wires sticking out of it. Plug in one side to ground, and the other to pin G4.
+Your button should have two wires sticking out of it. Plug in one side to ground, and the other to pin G3.
+
+![](https://lh5.googleusercontent.com/-VFXEUYqlb2w/VCHwX6JIsnI/AAAAAAAAKak/XS4eqXJ5RmM/w913-h514-no/20140923_151215.jpg)
 
 Require index.js from this folder and use as in the example:
 
@@ -56,6 +62,8 @@ setInterval(function readPin () {
 You should see a stream of ones while the wire is not plugged in, and a stream of zeroes when it is plugged in.
 
 Okay, now let's try it with a button. It's basically the same thing. Unplug your Tessel (it's bad practice to mess around with wires while your Tessel is powered). Your button should have two wires sticking out of it. One of them should plug into GND; the other into pin G3.
+
+![](https://lh5.googleusercontent.com/-VFXEUYqlb2w/VCHwX6JIsnI/AAAAAAAAKak/XS4eqXJ5RmM/w913-h514-no/20140923_151215.jpg)
 
 Run the same code, and try pressing the button. You should see zeroes when the button is pressed, and ones when the button is not pressed.
 
@@ -148,7 +156,11 @@ myButton.on('ready', function () {
 ### Multiple buttons
 Say you want more than one button. Maybe you're making a game controller, or a musical instrument or something. So you have several buttons to connect.
 
-All you have to do is connect one side of each to ground, and the other side to a different digital pin. Then make different instances for each button. Like this:
+All you have to do is connect one side of each to ground, and the other side to a different digital pin.
+
+![](https://lh6.googleusercontent.com/-Cr5us5zJ9SA/VCIBTDnpmqI/AAAAAAAAKcw/O-NE2P8AJOE/w913-h514-no/20140923_162433.jpg)
+
+Then make different instances for each button. Like this:
 
 ```js
 // examples/two-buttons.js
@@ -168,5 +180,8 @@ button2.on('press', function () {
   console.log('Pressing button 2.');
 });
 ```
+Pressing the different buttons will give you different messages.
+
+Note that I used a breadboard to connect several buttons to the same ground. If you're interested/want to know more about breadboards, [this](http://www.instructables.com/id/Breadboard-How-To/) is a really good place to start.
 
 That's all! Enjoy.
