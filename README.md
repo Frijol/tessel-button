@@ -1,4 +1,4 @@
-tessel-button
+tessel-gpio-button
 =============
 
 A button on Tessel's GPIO bank.
@@ -13,11 +13,16 @@ Your button should have two wires sticking out of it. Plug in one side to ground
 
 ![](https://lh5.googleusercontent.com/-VFXEUYqlb2w/VCHwX6JIsnI/AAAAAAAAKak/XS4eqXJ5RmM/w913-h514-no/20140923_151215.jpg)
 
-Require index.js from this folder and use as in the example:
+Install:
+
+```sh
+npm install tessel-gpio-button
+```
+Use:
 
 ```js
 var tessel = require('tessel');
-var buttonLib = require('.'); // index.js
+var buttonLib = require('tessel-gpio-button'); // index.js
 var myButton = buttonLib.use(tessel.port['GPIO'].pin['G3']);
 
 var i = 0;
@@ -135,14 +140,14 @@ function buttonPress () {
 ### Wrapping the events
 For the sake of consistency, I've set up index.js of this folder [the same way we set up every module](http://blog.technical.io/post/94084496782/making-a-tessel-style-library-for-third-party-hardware), to emit an event on `press`. `press` and `release` are individually easy, but harder to have both due to our simple debouncing method. I've left that as an exercise for the reader (PRs welcome).
 
-Here's some example code requiring index:
+Here's some example code requiring index (or just `npm install tessel-gpio-button`):
 
 ```js
 // examples/button.js
 // Count button presses
 
 var tessel = require('tessel');
-var buttonLib = require('.'); // index.js
+var buttonLib = require('tessel-gpio-button');
 var myButton = buttonLib.use(tessel.port['GPIO'].pin['G3']);
 
 var i = 0;
@@ -169,7 +174,7 @@ Then make different instances for each button. Like this:
 // Log button presses from two different buttons
 
 var tessel = require('tessel');
-var buttonLib = require('.'); // index.js
+var buttonLib = require('tessel-gpio-button');
 
 var button1 = buttonLib.use(tessel.port['GPIO'].pin['G3']);
 var button2 = buttonLib.use(tessel.port['GPIO'].pin['G2']);

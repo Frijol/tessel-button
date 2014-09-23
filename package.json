@@ -1,5 +1,5 @@
 {
-  "name": "tessel-button",
+  "name": "tessel-gpio-button",
   "version": "1.0.0",
   "description": "\"A button on Tessel's GPIO\"",
   "main": "index.js",
