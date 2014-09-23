@@ -47,6 +47,8 @@ Tessel has six digital pins along the GPIO bank, marked G1-G6. Each of these pin
 
 If you have a wire, you can try it out– plug in a wire (ideally black, for ground) in to the GND pin on Tessel's GPIO bank. While running the code below, try sticking the other end of the wire into G3:
 
+![](https://lh4.googleusercontent.com/-sgF_HmYkKLs/VCIGYOqdtcI/AAAAAAAAKdY/8PmTATEWaII/w913-h514-no/20140923_164633.jpg)
+
 ```js
 // tutorial/polling-read.js
 // Read Tessel's GPIO pin G3 every 100ms
