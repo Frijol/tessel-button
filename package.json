@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/Frijol/tessel-button/issues"
   },
+  "hardware": {
+    "./examples": false,
+    "./tutorial": false
+  },
   "homepage": "https://github.com/Frijol/tessel-button"
 }
