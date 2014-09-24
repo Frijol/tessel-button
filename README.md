@@ -22,7 +22,7 @@ Use:
 
 ```js
 var tessel = require('tessel');
-var buttonLib = require('tessel-gpio-button'); // index.js
+var buttonLib = require('tessel-gpio-button');
 var myButton = buttonLib.use(tessel.port['GPIO'].pin['G3']);
 
 var i = 0;
