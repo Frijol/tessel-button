@@ -138,7 +138,9 @@ function buttonPress () {
 500ms worked well for my button, but feel free to adjust the delay and see how long it takes for your button to stop bouncing.
 
 ### Wrapping the events
-For the sake of consistency, I've set up index.js of this folder [the same way we set up every module](http://blog.technical.io/post/94084496782/making-a-tessel-style-library-for-third-party-hardware), to emit an event on `press`. `press` and `release` are individually easy, but harder to have both due to our simple debouncing method. I've left that as an exercise for the reader (PRs welcome).
+For the sake of consistency, I've set up index.js of this folder [the same way we set up every module](http://blog.technical.io/post/94084496782/making-a-tessel-style-library-for-third-party-hardware), to emit an event on `press`. `press` and `release` are individually easy, but harder to have both due to our simple debouncing method.
+
+I've done something rather interesting to get around this in index.js; feel free to check it out (and PRs welcome if you can think of a better way).
 
 Here's some example code requiring index (or just `npm install tessel-gpio-button`):
 
@@ -147,7 +149,7 @@ Here's some example code requiring index (or just `npm install tessel-gpio-butto
 // Count button presses
 
 var tessel = require('tessel');
-var buttonLib = require('tessel-gpio-button');
+var buttonLib = require('../');
 var myButton = buttonLib.use(tessel.port['GPIO'].pin['G3']);
 
 var i = 0;
@@ -156,6 +158,11 @@ myButton.on('ready', function () {
   myButton.on('press', function () {
     i++;
     console.log('Press', i);
+  });
+  
+  myButton.on('release', function () {
+    i++;
+    console.log('Release', i);
   });
 });
 ```
