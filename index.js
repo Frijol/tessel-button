@@ -27,22 +27,26 @@ function Button (hardware, callback) {
   self.hardware = hardware;
   
   // Object properties
-  self.delay = 500;
-  self.ready = true;
+  self.delay = 100;
+  self.pressed = false;
   
   // Begin listening for events
-  self.hardware.on('fall', function (time, type) {
-    if(self.ready) {
-      // Emit the appropriate event
-      self.emit('press', time);
-      
-      // Set delay timer
-      self.ready = false;
-      setTimeout(function () {
-        self.ready = true;
-      }, self.delay);
-    }
+  self.hardware.on('fall', function () {
+    self._press();
   });
+  
+  self.hardware.on('rise', function () {
+    self._release();
+  });
+  
+  // Make sure the events get emitted, even if late
+  setInterval(function () {
+    if(!self.hardware.read()) {
+      self._press();
+    } else {
+      self._release();
+    }
+  }, self.delay);
   
   // Emit the ready event when everything is set up
   setImmediate(function emitReady() {
@@ -56,6 +60,24 @@ function Button (hardware, callback) {
 
 // Inherit event emission
 util.inherits(Button, EventEmitter);
+
+Button.prototype._press = function () {
+  var self = this;
+  
+  if(!self.pressed) {
+    self.emit('press');
+    self.pressed = true;
+  }
+}
+
+Button.prototype._release = function () {
+  var self = this;
+  
+  if(self.pressed) {
+    self.emit('release');
+    self.pressed = false;
+  }
+}
 
 // Use function which calls the constructor
 function use (hardware, callback) {

@@ -12,4 +12,9 @@ myButton.on('ready', function () {
     i++;
     console.log('Press', i);
   });
+  
+  myButton.on('release', function () {
+    i++;
+    console.log('Release', i);
+  });
 });
